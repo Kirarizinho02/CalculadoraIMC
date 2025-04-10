@@ -1,8 +1,8 @@
-import { Text, StyleSheet } from 'react-native';
+import  { Text, StyleSheet } from 'react-native';
 
-const Title = () => {
+const Title = () => {   
     return (
-        <Text style={styles.Title}> Calculadora de IMC </Text>
+        <Text style={styles.title}>Calculadora de IMC</Text>
     );
 };
 

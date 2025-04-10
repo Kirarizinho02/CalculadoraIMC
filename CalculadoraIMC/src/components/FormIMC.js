@@ -1,50 +1,55 @@
-import { View, TextInput, Button, StyleSheet } from 'react-native';
-import Result from './Result';
+import { View, TextInput, Button, StyleSheet } from "react-native";
+import Result from "./Result";
+import { useState } from "react";
+import IdealWeight from "./IdealWeight";
+import Classification from "./Classification";
 
-const FormIMC = () => {
-    const [peso, setPeso] = useState('');
-    const [altura, setAltura] = useState('');
-    const [imc, setIMC] = useState(null);
-
+const FormIMC = () => { 
+    const [peso, setPeso] = useState("");
+    const [altura, setAltura] = useState("");
+    const [imc, setImc] = useState(null);
+    
     const calcularIMC = () => {
         if (peso && altura) {
             const alturaMetros = parseFloat(altura) / 100;
             const imcCalculado = (parseFloat(peso) / (alturaMetros * alturaMetros)).toFixed(2);
-            setIMC(imcCalculado);
+            setImc(imcCalculado);
         }
     };
 
     return (
-        <View style={StyleSheet.formContainer}>
+        <View style={styles.formContainer}>
             <TextInput 
-                style={styles.input}
-                placeholder="Peso (kg)"
-                keyboardType="numeric"
-                value={peso}
-                onChangeText={setPeso}
+            style={styles.input}
+            placeholder="Peso (kg)"
+            keyboardType="numeric"
+            value={peso}
+            onChangeText={setPeso}
             />
             <TextInput
-                style={styles.input}
-                placeholder="Altura (cm)"
-                keyboardType="numeric"
-                value={altura}
-                onChangeText={setAltura}
+            style={styles.input}
+            placeholder="Altura (cm)"
+            keyboardType="numeric"
+            value={altura}
+            onChangeText={setAltura}
             />
             <Button title="Calcular IMC" onPress={calcularIMC} />
             {imc && <Result imc={imc} />}
+            {imc && <Classification imcCalculado={imc} />}
+            {imc && <IdealWeight altura={altura} />}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     formContainer: {
-        backgroundColor: '#f0f0f0',
         padding: 16,
+        backgroundColor: "#f0f0f0",
         borderRadius: 10,
     },
     input: {
         height: 40,
-        borderColor: 'gray',
+        borderColor: "#ccc",
         borderWidth: 1,
         marginBottom: 12,
         paddingHorizontal: 8,
