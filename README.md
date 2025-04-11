@@ -29,3 +29,4 @@ Para rodar o projeto:
 4. Instale o aplicativo ExpoGo e leia o QRCode no seu dispositivo móvel ou então emule usando as opções disponíveis.
 
 ## Vídeo Demo
+Confira o vídeo demo do projeto [aqui!](https://youtu.be/28IVsUZPtJE)
