@@ -10,9 +10,25 @@ const FormIMC = () => {
     const [imc, setImc] = useState(null);
     
     const calcularIMC = () => {
+        const alturaMetros = parseFloat(altura) / 100;
+        const pesoCorrigido = parseFloat(peso.replace(",", "."));
+        // Mensagem personalizada pro caso de campos sem valores.
+        if (pesoCorrigido === "" || altura === "") {
+            alert("Por favor preencha todos os campos.");
+            return;
+        }
+        // Mensagem personalizada pro caso de valores inválidos.
+        if (isNaN(pesoCorrigido) || isNaN(altura)) {
+            alert("Por favor insira valores numéricos válidos.");
+            return;
+        }
+        // Mensagem personalizada pro caso de valores negativos.
+        if (pesoCorrigido <= 0 || altura <= 0) {
+            alert("Por favor insira valores positivos.");
+            return;
+        }
         if (peso && altura) {
-            const alturaMetros = parseFloat(altura) / 100;
-            const imcCalculado = (parseFloat(peso) / (alturaMetros * alturaMetros)).toFixed(2);
+            const imcCalculado = (parseFloat(pesoCorrigido) / (alturaMetros * alturaMetros)).toFixed(2);
             setImc(imcCalculado);
         }
     };
@@ -33,7 +49,7 @@ const FormIMC = () => {
             value={altura}
             onChangeText={setAltura}
             />
-            <Button title="Calcular IMC" onPress={calcularIMC} />
+            <Button color="#4aff80" title="Calcular IMC" onPress={calcularIMC} />
             {imc && <Result imc={imc} />}
             {imc && <Classification imcCalculado={imc} />}
             {imc && <IdealWeight altura={altura} />}
@@ -44,6 +60,8 @@ const FormIMC = () => {
 const styles = StyleSheet.create({
     formContainer: {
         padding: 16,
+        borderWidth: 1,
+        borderColor: "#ccc",
         backgroundColor: "#f0f0f0",
         borderRadius: 10,
     },

@@ -1,5 +1,6 @@
 import { Text, StyleSheet } from "react-native";
 
+// Componente utiliza parâmetros para receber o IMC calculado do FormIMC, então compara ele com os valores de referência
 const Classification = ({ imcCalculado }) => {
     let classification = "";
     const imc = parseFloat(imcCalculado);
@@ -13,6 +14,8 @@ const Classification = ({ imcCalculado }) => {
         classification = "Obesidade";
     }
 
+
+    // Texto que aparece na tela com a classificação do IMC abaixo do resultado
     return (
         <Text style={styles.classification}>
             Classificação: {classification}
@@ -20,6 +23,8 @@ const Classification = ({ imcCalculado }) => {
     );
 };
 
+
+// Estilo do texto, padronizado como o resto dos componentes
 const styles = StyleSheet.create({
     classification: {
         fontSize: 20,
