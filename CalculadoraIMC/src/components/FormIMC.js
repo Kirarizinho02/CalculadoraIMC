@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         backgroundColor: "#f0f0f0",
         borderRadius: 10,
+        boxShadow: "0 5px 4px rgba(0, 0, 0, 0.1)",
     },
     input: {
         height: 40,
